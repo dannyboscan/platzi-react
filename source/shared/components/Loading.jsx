@@ -1,10 +1,15 @@
 import React from 'react';
 
+import Style from './loading.css';
+
 const Loading = (props) => {
   return (
-    <h2>
-      Cargando Información...
-    </h2>
+    <div className={Style.loading}>
+      <h3 className={Style.loading}>
+        Cargando Información...
+      </h3>
+      <i className="fa fa-spinner fa-spin fa-3x"></i>
+    </div>
   );
 };
 

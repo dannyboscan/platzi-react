@@ -1,0 +1,9 @@
+.loading {
+  margin: 1em auto;
+  text-align: center;
+  color: #CCC;
+}
+.loading *:not(.fa) {
+  text-align: center;
+  color: inherit;
+}

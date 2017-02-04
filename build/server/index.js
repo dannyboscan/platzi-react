@@ -36786,13 +36786,22 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _loading = __webpack_require__(268);
+
+	var _loading2 = _interopRequireDefault(_loading);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	const Loading = props => {
 	  return _react2.default.createElement(
-	    'h2',
-	    null,
-	    'Cargando Informaci\xF3n...'
+	    'div',
+	    { className: _loading2.default.loading },
+	    _react2.default.createElement(
+	      'h3',
+	      { className: _loading2.default.loading },
+	      'Cargando Informaci\xF3n...'
+	    ),
+	    _react2.default.createElement('i', { className: 'fa fa-spinner fa-spin fa-3x' })
 	  );
 	};
 
@@ -36922,7 +36931,7 @@
 	      _react2.default.createElement(
 	        "a",
 	        { href: "`mailto:${email}`" },
-	        "name"
+	        name
 	      )
 	    ),
 	    _react2.default.createElement(
@@ -37226,6 +37235,14 @@
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"section":"_3RzUdyxDiYRjzN2t3kHTdZ","list":"_1P0HXrDvUBQxTDb6e2mbY4"};
+
+/***/ },
+/* 267 */,
+/* 268 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"loading":"_3P8_6NsWV5vRSMahvDIH2j","fa":"_3smyQtU338kksVuoqFOF2m"};
 
 /***/ }
 /******/ ]);

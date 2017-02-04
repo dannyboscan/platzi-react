@@ -1,2 +1,2 @@
-# platzi-react
-Curso de React - Redux de Plazi
+# Posts en React con Redux
+Curso de React con Redux de Plazi
