@@ -62,7 +62,7 @@
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Layout = __webpack_require__(258);
+	var _Layout = __webpack_require__(269);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -99,7 +99,7 @@
 		}
 
 		res.write((0, _server.renderToStaticMarkup)(_react2.default.createElement(_Layout2.default, {
-			title: 'React - Redux, Curso de Platzi',
+			title: 'React con Redux, Curso de Platzi',
 			content: html
 		})));
 		// res.write(html);
@@ -24281,7 +24281,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(2);
@@ -24294,48 +24294,48 @@
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _Post = __webpack_require__(254);
+	var _Post = __webpack_require__(262);
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Profile = __webpack_require__(256);
+	var _Profile = __webpack_require__(264);
 
 	var _Profile2 = _interopRequireDefault(_Profile);
 
-	var _Error = __webpack_require__(257);
+	var _Error = __webpack_require__(265);
 
 	var _Error2 = _interopRequireDefault(_Error);
 
-	var _Header = __webpack_require__(259);
+	var _Header = __webpack_require__(266);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function Pages() {
-		return _react2.default.createElement(
-			'main',
-			{ role: 'application' },
-			_react2.default.createElement(_Header2.default, null),
-			_react2.default.createElement(_reactRouter.Match, {
-				pattern: '/',
-				exactly: true,
-				component: _Home2.default
-			}),
-			_react2.default.createElement(_reactRouter.Match, {
-				pattern: '/post/:id',
-				exactly: true,
-				component: _Post2.default
-			}),
-			_react2.default.createElement(_reactRouter.Match, {
-				pattern: '/user/:id',
-				exactly: true,
-				component: _Profile2.default
-			}),
-			_react2.default.createElement(_reactRouter.Miss, {
-				component: _Error2.default
-			})
-		);
+	  return _react2.default.createElement(
+	    'main',
+	    { role: 'application' },
+	    _react2.default.createElement(_Header2.default, null),
+	    _react2.default.createElement(_reactRouter.Match, {
+	      pattern: '/',
+	      exactly: true,
+	      component: _Home2.default
+	    }),
+	    _react2.default.createElement(_reactRouter.Match, {
+	      pattern: '/post/:id',
+	      exactly: true,
+	      component: _Post2.default
+	    }),
+	    _react2.default.createElement(_reactRouter.Match, {
+	      pattern: '/user/:id',
+	      exactly: true,
+	      component: _Profile2.default
+	    }),
+	    _react2.default.createElement(_reactRouter.Miss, {
+	      component: _Error2.default
+	    })
+	  );
 	}
 
 	exports.default = Pages;
@@ -24356,8 +24356,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(172);
-
 	var _api = __webpack_require__(212);
 
 	var _api2 = _interopRequireDefault(_api);
@@ -24370,7 +24368,7 @@
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
-	var _page = __webpack_require__(266);
+	var _page = __webpack_require__(260);
 
 	var _page2 = _interopRequireDefault(_page);
 
@@ -24411,7 +24409,7 @@
 			window.removeEventListener('scroll', this.handleScroll);
 		}
 
-		handleScroll(e) {
+		handleScroll() {
 			var _this2 = this;
 
 			if (this.state.loading) return null;
@@ -36666,7 +36664,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(2);
@@ -36683,7 +36681,7 @@
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
-	var _post = __webpack_require__(264);
+	var _post = __webpack_require__(258);
 
 	var _post2 = _interopRequireDefault(_post);
 
@@ -36692,82 +36690,82 @@
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 	class Post extends _react.Component {
-		constructor(props) {
-			super(props);
+	  constructor(props) {
+	    super(props);
 
-			this.state = {
-				loading: true,
-				user: props.user || null,
-				comments: props.comments || null
-			};
-		}
+	    this.state = {
+	      loading: true,
+	      user: props.user || null,
+	      comments: props.comments || null
+	    };
+	  }
 
-		componentDidMount() {
-			var _this = this;
+	  componentDidMount() {
+	    var _this = this;
 
-			return _asyncToGenerator(function* () {
-				if (!!_this.state.user && !!_this.state.comments) return _this.setState({ loading: false });
+	    return _asyncToGenerator(function* () {
+	      if (!!_this.state.user && !!_this.state.comments) {
+	        return _this.setState({ loading: false });
+	      }
 
-				const { userId, id } = _this.props;
-				const [user, comments] = yield Promise.all([!_this.props.user ? _api2.default.users.getSingle(userId) : Promise.resolve(_this.props.user), !_this.props.comments ? _api2.default.posts.getComments(id) : Promise.resolve(_this.props.comments)]);
+	      const { userId, id } = _this.props;
+	      const [user, comments] = yield Promise.all([!_this.props.user ? _api2.default.users.getSingle(userId) : Promise.resolve(_this.props.user), !_this.props.comments ? _api2.default.posts.getComments(id) : Promise.resolve(_this.props.comments)]);
 
-				_this.setState({
-					loading: false,
-					user,
-					comments
-				});
-			})();
-		}
+	      _this.setState({ loading: false, user, comments });
+	    })();
+	  }
 
-		render() {
-			const { user, comments } = this.state;
+	  render() {
+	    const { user, comments } = this.state;
 
-			if (this.state.loading) return _react2.default.createElement(_Loading2.default, null);
+	    if (this.state.loading) {
+	      return _react2.default.createElement(_Loading2.default, null);
+	    }
 
-			const { id, title, body } = this.props;
+	    const { id, title, body } = this.props;
 
-			return _react2.default.createElement(
-				'article',
-				{ id: `post-${id}`, className: _post2.default.post },
-				_react2.default.createElement(
-					'h2',
-					{ className: _post2.default.title },
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: `/post/${id}` },
-						title
-					)
-				),
-				_react2.default.createElement(
-					'p',
-					{ className: _post2.default.body },
-					body
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: _post2.default.meta },
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: `/user/${user.id}`, className: _post2.default.user },
-						user.name
-					),
-					_react2.default.createElement(
-						'span',
-						{ className: _post2.default.comments },
-						'\xA0Hay ',
-						comments.length,
-						' comentarios'
-					)
-				)
-			);
-		}
+	    return _react2.default.createElement(
+	      'article',
+	      { id: `post-${id}`, className: _post2.default.post },
+	      _react2.default.createElement(
+	        'h2',
+	        { className: _post2.default.title },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: `/post/${id}` },
+	          title
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        { className: _post2.default.body },
+	        body
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: _post2.default.meta },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: `/user/${user.id}`, className: _post2.default.user },
+	          user.name
+	        ),
+	        _react2.default.createElement(
+	          'span',
+	          { className: _post2.default.comments },
+	          '\xA0Hay ',
+	          comments.length,
+	          'comentarios'
+	        )
+	      )
+	    );
+	  }
 	}
 
 	Post.propTypes = {
-		id: _react.PropTypes.number,
-		userId: _react.PropTypes.number,
-		title: _react.PropTypes.string,
-		body: _react.PropTypes.string
+	  id: _react.PropTypes.number,
+	  userId: _react.PropTypes.number,
+	  title: _react.PropTypes.string,
+	  body: _react.PropTypes.string
 	};
 
 	exports.default = Post;
@@ -36786,7 +36784,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _loading = __webpack_require__(268);
+	var _loading = __webpack_require__(254);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
@@ -36809,12 +36807,38 @@
 
 /***/ },
 /* 254 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"loading":"_3P8_6NsWV5vRSMahvDIH2j","fa":"_3smyQtU338kksVuoqFOF2m"};
+
+/***/ },
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"post":"_11QmhkmFbwbDuIFN3Ar9ah","title":"_3biWMpj8psaCNETABzWu0p","meta":"_3_-KmlAYGoQu7GSCaj8J9Z"};
+
+/***/ },
+/* 259 */,
+/* 260 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"section":"_3RzUdyxDiYRjzN2t3kHTdZ","list":"_1P0HXrDvUBQxTDb6e2mbY4"};
+
+/***/ },
+/* 261 */,
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -36822,8 +36846,6 @@
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(172);
 
 	var _api = __webpack_require__(212);
 
@@ -36837,11 +36859,11 @@
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Comment = __webpack_require__(255);
+	var _Comment = __webpack_require__(263);
 
 	var _Comment2 = _interopRequireDefault(_Comment);
 
-	var _page = __webpack_require__(266);
+	var _page = __webpack_require__(260);
 
 	var _page2 = _interopRequireDefault(_page);
 
@@ -36850,64 +36872,66 @@
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 	class Post extends _react.Component {
-		constructor() {
-			super();
+	  constructor() {
+	    super();
 
-			this.state = {
-				loading: true,
-				post: {},
-				user: {},
-				comments: []
-			};
-		}
+	    this.state = {
+	      loading: true,
+	      post: {},
+	      user: {},
+	      comments: []
+	    };
+	  }
 
-		componentDidMount() {
-			var _this = this;
+	  componentDidMount() {
+	    var _this = this;
 
-			return _asyncToGenerator(function* () {
-				const { params } = _this.props;
+	    return _asyncToGenerator(function* () {
+	      const { params } = _this.props;
 
-				const [post, comments] = yield Promise.all([_api2.default.posts.getSingle(params.id), _api2.default.posts.getComments(params.id)]);
+	      const [post, comments] = yield Promise.all([_api2.default.posts.getSingle(params.id), _api2.default.posts.getComments(params.id)]);
 
-				const user = yield _api2.default.users.getSingle(post.userId);
+	      const user = yield _api2.default.users.getSingle(post.userId);
 
-				_this.setState({
-					loading: false,
-					post,
-					user,
-					comments
-				});
-			})();
-		}
+	      _this.setState({
+	        loading: false,
+	        post,
+	        user,
+	        comments
+	      });
+	    })();
+	  }
 
-		render() {
-			const { post, user, comments } = this.state;
+	  render() {
+	    const { post, user, comments } = this.state;
 
-			if (this.state.loading) return _react2.default.createElement(_Loading2.default, null);
+	    if (this.state.loading) {
+	      return _react2.default.createElement(_Loading2.default, null);
+	    }
 
-			return _react2.default.createElement(
-				'section',
-				{ name: 'Post', className: _page2.default.section },
-				_react2.default.createElement(_Post2.default, _extends({}, post, {
-					user: user,
-					comments: comments
-				})),
-				_react2.default.createElement(
-					'section',
-					{ className: _page2.default.list },
-					comments.map(c => _react2.default.createElement(_Comment2.default, _extends({ key: c.id }, c)))
-				)
-			);
-		}
+	    return _react2.default.createElement(
+	      'section',
+	      { name: 'Post', className: _page2.default.section },
+	      _react2.default.createElement(_Post2.default, _extends({}, post, {
+	        user: user,
+	        comments: comments
+	      })),
+	      _react2.default.createElement(
+	        'section',
+	        { className: _page2.default.list },
+	        comments.map(c => _react2.default.createElement(_Comment2.default, _extends({ key: c.id }, c)))
+	      )
+	    );
+	  }
 	}
 
 	exports.default = Post;
 
 /***/ },
-/* 255 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -36922,20 +36946,20 @@
 	const Comment = props => {
 	  const { name, body, email } = props;
 	  return _react2.default.createElement(
-	    "article",
+	    'article',
 	    null,
 	    _react2.default.createElement(
-	      "div",
+	      'div',
 	      null,
-	      "By: ",
+	      'By: ',
 	      _react2.default.createElement(
-	        "a",
-	        { href: "`mailto:${email}`" },
+	        'a',
+	        { href: `mailto:${email}` },
 	        name
 	      )
 	    ),
 	    _react2.default.createElement(
-	      "p",
+	      'p',
 	      null,
 	      body
 	    )
@@ -36945,7 +36969,7 @@
 	exports.default = Comment;
 
 /***/ },
-/* 256 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36960,8 +36984,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(172);
-
 	var _Post = __webpack_require__(252);
 
 	var _Post2 = _interopRequireDefault(_Post);
@@ -36974,7 +36996,7 @@
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
-	var _page = __webpack_require__(266);
+	var _page = __webpack_require__(260);
 
 	var _page2 = _interopRequireDefault(_page);
 
@@ -37067,7 +37089,7 @@
 	exports.default = Profile;
 
 /***/ },
-/* 257 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37106,57 +37128,7 @@
 	exports.default = Error404;
 
 /***/ },
-/* 258 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	const Layout = props => {
-		return _react2.default.createElement(
-			"html",
-			{ lang: "en" },
-			_react2.default.createElement(
-				"head",
-				null,
-				_react2.default.createElement("meta", { charSet: "UTF-8" }),
-				_react2.default.createElement("meta", { name: "viewport", content: "width=device-width, initial-scale=1.0, minimum-scale=1.0" }),
-				_react2.default.createElement("link", { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" }),
-				_react2.default.createElement("link", { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" }),
-				_react2.default.createElement("link", { rel: "stylesheet", href: "http://localhost:3001/style.css" }),
-				_react2.default.createElement(
-					"title",
-					null,
-					props.title
-				)
-			),
-			_react2.default.createElement(
-				"body",
-				null,
-				_react2.default.createElement("div", {
-					id: "render-target",
-					dangerouslySetInnerHTML: {
-						__html: props.content
-					}
-				}),
-				_react2.default.createElement("script", { src: "http://localhost:3001/app.js" })
-			)
-		);
-	};
-
-	exports.default = Layout;
-
-/***/ },
-/* 259 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37171,7 +37143,7 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	var _header = __webpack_require__(260);
+	var _header = __webpack_require__(267);
 
 	var _header2 = _interopRequireDefault(_header);
 
@@ -37187,7 +37159,7 @@
 	      _react2.default.createElement(
 	        'span',
 	        null,
-	        'React - Redux'
+	        'React Con Redux'
 	      ),
 	      _react2.default.createElement('img', { src: 'https://cdn.auth0.com/blog/react-js/react.png', alt: 'React', className: _header2.default.react })
 	    ),
@@ -37212,37 +37184,63 @@
 	exports.default = Header;
 
 /***/ },
-/* 260 */
+/* 267 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"header":"pe7_feFmz-1Mxsh_bYoS7","title":"_2OmtD-0bKgTUV--hdr_046","navigation":"_2diXiS83Qjo-CWca8pXYgR","link":"_5KhtR6thl0LWF5XtSPGmz","react":"_2O-BDuOzQMEkqoxwW_Hbkz","spin":"xkP6l_cR8Li7JS8z0kMF4"};
 
 /***/ },
-/* 261 */,
-/* 262 */,
-/* 263 */,
-/* 264 */
-/***/ function(module, exports) {
+/* 268 */,
+/* 269 */
+/***/ function(module, exports, __webpack_require__) {
 
-	// removed by extract-text-webpack-plugin
-	module.exports = {"post":"_11QmhkmFbwbDuIFN3Ar9ah","title":"_3biWMpj8psaCNETABzWu0p","meta":"_3_-KmlAYGoQu7GSCaj8J9Z"};
+	"use strict";
 
-/***/ },
-/* 265 */,
-/* 266 */
-/***/ function(module, exports) {
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	// removed by extract-text-webpack-plugin
-	module.exports = {"section":"_3RzUdyxDiYRjzN2t3kHTdZ","list":"_1P0HXrDvUBQxTDb6e2mbY4"};
+	var _react = __webpack_require__(2);
 
-/***/ },
-/* 267 */,
-/* 268 */
-/***/ function(module, exports) {
+	var _react2 = _interopRequireDefault(_react);
 
-	// removed by extract-text-webpack-plugin
-	module.exports = {"loading":"_3P8_6NsWV5vRSMahvDIH2j","fa":"_3smyQtU338kksVuoqFOF2m"};
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	const Layout = props => {
+	  return _react2.default.createElement(
+	    "html",
+	    { lang: "en" },
+	    _react2.default.createElement(
+	      "head",
+	      null,
+	      _react2.default.createElement("meta", { charSet: "UTF-8" }),
+	      _react2.default.createElement("meta", { name: "viewport", content: "width=device-width, initial-scale=1.0, minimum-scale=1.0" }),
+	      _react2.default.createElement("link", { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" }),
+	      _react2.default.createElement("link", { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" }),
+	      _react2.default.createElement("link", { rel: "stylesheet", href: "http://localhost:3001/style.css" }),
+	      _react2.default.createElement("link", { rel: "icon", href: "http://localhost:3001/react.png", sizes: "192x192" }),
+	      _react2.default.createElement(
+	        "title",
+	        null,
+	        props.title
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "body",
+	      null,
+	      _react2.default.createElement("div", {
+	        id: "render-target",
+	        dangerouslySetInnerHTML: {
+	          __html: props.content
+	        }
+	      }),
+	      _react2.default.createElement("script", { src: "http://localhost:3001/app.js" })
+	    )
+	  );
+	};
+
+	exports.default = Layout;
 
 /***/ }
 /******/ ]);

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 
 import Api from '../../api.js';
 import Post from '../../posts/containers/Post.jsx';
@@ -37,7 +36,7 @@ class Home extends Component {
 		window.removeEventListener('scroll', this.handleScroll);
 	}
 
-	handleScroll(e) {
+	handleScroll() {
 		if (this.state.loading) return null;
 
 		const wrap = document.getElementById('home');

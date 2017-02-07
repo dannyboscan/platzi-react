@@ -5,7 +5,7 @@ const Comment = (props) => {
   return (
     <article>
       <div>
-        By: <a href="`mailto:${email}`">{name}</a>
+        By: <a href={`mailto:${email}`}>{name}</a>
       </div>
 
       <p>

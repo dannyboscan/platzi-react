@@ -6,7 +6,7 @@ const Header = (props) => {
   return (
     <header className={Style.header}>
       <h1 className={Style.title}>
-        <span>React - Redux</span>
+        <span>React Con Redux</span>
         <img src="https://cdn.auth0.com/blog/react-js/react.png" alt="React" className={Style.react}/>
       </h1>
 

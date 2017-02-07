@@ -39,7 +39,7 @@ function requestHandler(req, res) {
 	res.write(
 		renderToStaticMarkup(
 			<Layout
-				title="React - Redux, Curso de Platzi"
+				title="React con Redux, Curso de Platzi"
 				content={html}
 			/>
 		)

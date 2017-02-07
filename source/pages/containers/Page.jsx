@@ -1,5 +1,5 @@
 import React from 'react';
-import { Match, Miss, Link } from 'react-router';
+import { Match, Miss } from 'react-router';
 
 import Home from './Home.jsx';
 import Post from './Post.jsx';
@@ -9,30 +9,30 @@ import Error404 from './Error404.jsx';
 import Header from '../../shared/components/Header.jsx';
 
 function Pages() {
-	return (
-		<main role="application">
-			<Header />
+  return (
+    <main role="application">
+      <Header />
 
-			<Match
-				pattern="/"
-				exactly
-				component={Home}
-			/>
-			<Match
-				pattern="/post/:id"
-				exactly
-				component={Post}
-			/>
-			<Match
-				pattern="/user/:id"
-				exactly
-				component={Profile}
-			/>
-			<Miss
-				component={Error404}
-			/>
-		</main>
-	);
+      <Match
+        pattern="/"
+        exactly
+        component={Home}
+      />
+      <Match
+        pattern="/post/:id"
+        exactly
+        component={Post}
+      />
+      <Match
+        pattern="/user/:id"
+        exactly
+        component={Profile}
+      />
+      <Miss
+        component={Error404}
+      />
+    </main>
+  );
 }
 
 export default Pages;
