@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Props",
+				"PropTypes"
+			],
+			[
 				"po",
 				"Post.jsx"
 			],
@@ -215,6 +219,33 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "source/posts/containers/Post.jsx",
+			"settings":
+			{
+				"buffer_size": 1847,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/shared/components/Header.jsx",
+			"settings":
+			{
+				"buffer_size": 728,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/shared/components/Loading.jsx",
+			"settings":
+			{
+				"buffer_size": 312,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -224,9 +255,29 @@
 	"command_palette":
 	{
 		"height": 354.0,
-		"last_filter": "insta",
+		"last_filter": "space",
 		"selected_items":
 		[
+			[
+				"space",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
 			[
 				"insta",
 				"Package Control: Install Package"
@@ -240,24 +291,12 @@
 				"Scope Hunter: Toggle Instant Scoper"
 			],
 			[
-				"inst",
-				"Package Control: Install Package"
-			],
-			[
-				"json",
-				"Set Syntax: JSON"
-			],
-			[
 				"install",
 				"Package Control: Install Package"
 			],
 			[
 				"material",
 				"Material Theme: Activate theme"
-			],
-			[
-				"space",
-				"Indentation: Convert to Spaces"
 			],
 			[
 				"remove",
@@ -290,10 +329,6 @@
 			[
 				"remo",
 				"Package Control: Remove Package"
-			],
-			[
-				"list",
-				"Package Control: List Packages"
 			]
 		],
 		"width": 503.0
@@ -320,28 +355,36 @@
 		"/Users/dannyboscan/Projects/react-redux",
 		"/Users/dannyboscan/Projects/react-redux/confs",
 		"/Users/dannyboscan/Projects/react-redux/source",
+		"/Users/dannyboscan/Projects/react-redux/source/comments",
+		"/Users/dannyboscan/Projects/react-redux/source/comments/components",
 		"/Users/dannyboscan/Projects/react-redux/source/pages",
+		"/Users/dannyboscan/Projects/react-redux/source/pages/components",
+		"/Users/dannyboscan/Projects/react-redux/source/pages/containers",
 		"/Users/dannyboscan/Projects/react-redux/source/posts",
-		"/Users/dannyboscan/Projects/react-redux/source/posts/containers"
+		"/Users/dannyboscan/Projects/react-redux/source/posts/containers",
+		"/Users/dannyboscan/Projects/react-redux/source/shared",
+		"/Users/dannyboscan/Projects/react-redux/source/shared/components"
 	],
 	"file_history":
 	[
-		"/Users/dannyboscan/Projects/react-redux/source/api.js",
-		"/Users/dannyboscan/Projects/react-redux/source/posts/containers/Post.jsx",
-		"/Users/dannyboscan/Projects/react-redux/source/pages/containers/Home.jsx",
-		"/Users/dannyboscan/Projects/react-redux/source/server.js",
+		"/Users/dannyboscan/Projects/react-redux/.babelrc",
+		"/Users/dannyboscan/Projects/react-redux/package.json",
 		"/Users/dannyboscan/Projects/react-redux/confs/webpack.client.conf.js",
 		"/Users/dannyboscan/Projects/react-redux/confs/webpack.server.conf.js",
-		"/Users/dannyboscan/Projects/react-redux/.babelrc",
+		"/Users/dannyboscan/Projects/react-redux/source/pages/containers/Error404.jsx",
+		"/Users/dannyboscan/Projects/react-redux/source/pages/containers/Page.jsx",
+		"/Users/dannyboscan/Projects/react-redux/source/pages/containers/Post.jsx",
+		"/Users/dannyboscan/Projects/react-redux/source/pages/containers/Profile.jsx",
+		"/Users/dannyboscan/Projects/react-redux/source/posts/containers/Post.jsx",
+		"/Users/dannyboscan/Projects/react-redux/source/pages/containers/Home.jsx",
+		"/Users/dannyboscan/Projects/react-redux/.eslintrc",
+		"/Users/dannyboscan/Projects/react-redux/source/api.js",
+		"/Users/dannyboscan/Library/Application Support/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
+		"/Users/dannyboscan/Projects/react-redux/source/server.js",
 		"/Users/dannyboscan/Projects/react-redux/source/client.js",
-		"/Users/dannyboscan/Projects/react-redux/package.json",
 		"/Users/dannyboscan/Projects/react-redux/webpack.config.js",
 		"/Users/dannyboscan/Projects/react-redux/source/pages/components/Layout.jsx",
 		"/Users/dannyboscan/Projects/react-redux/source/components/Layout.jsx",
-		"/Users/dannyboscan/Projects/react-redux/source/pages/containers/Page.jsx",
-		"/Users/dannyboscan/Projects/react-redux/source/pages/containers/Error404.jsx",
-		"/Users/dannyboscan/Projects/react-redux/source/pages/containers/Post.jsx",
-		"/Users/dannyboscan/Projects/react-redux/source/pages/containers/Profile.jsx",
 		"/Users/dannyboscan/Projects/epk2extract/build.sh",
 		"/Users/dannyboscan/Projects/hirefront/main/templatetags/require.py",
 		"/Users/dannyboscan/Library/Application Support/Sublime Text 3/Packages/User/requirejs.sublime-snippet",
@@ -451,19 +494,18 @@
 		"/Users/dannyboscan/Projects/hirefront/hirefront/urls.py",
 		"/Users/dannyboscan/Projects/hirefront/main/view/executive_summary.py",
 		"/Users/dannyboscan/Projects/hirefront/templates/employee/profile/license_requisitions/new.html",
-		"/Users/dannyboscan/Projects/hirefront/lib/tools/decorators.py",
-		"/Users/dannyboscan/Projects/hirefront/portals/views.py",
-		"/Users/dannyboscan/Projects/hirefront/.env"
+		"/Users/dannyboscan/Projects/hirefront/lib/tools/decorators.py"
 	],
 	"find":
 	{
-		"height": 29.0
+		"height": 70.0
 	},
 	"find_in_files":
 	{
 		"height": 158.0,
 		"where_history":
 		[
+			"*.jsx",
 			"",
 			"*.js",
 			"*.py",
@@ -479,6 +521,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"jsx",
+			"Proptypes",
+			"Propstypes",
+			"br",
+			"\t",
+			"jsx",
+			"\t",
+			"file",
+			"file-loader",
+			"\t",
+			".jsx",
+			"window",
+			"Link",
+			"# ",
 			"Post",
 			"About",
 			"Post",
@@ -609,8 +665,364 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "source/posts/containers/Post.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1847,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1628,
+								1628
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1633,
+										1634
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1102,
+										1103
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 799.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "source/shared/components/Header.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 728,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								463,
+								463
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										698,
+										699
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										131,
+										132
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "source/shared/components/Loading.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 312,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								171,
+								171
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										281,
+										282
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										97,
+										98
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -667,12 +1079,32 @@
 		"selected_items":
 		[
 			[
-				"home",
-				"source/pages/containers/Home.jsx"
+				".babe",
+				".babelrc"
 			],
 			[
 				"pack",
 				"package.json"
+			],
+			[
+				".b",
+				".babelrc"
+			],
+			[
+				".",
+				".eslintrc"
+			],
+			[
+				".elsi",
+				".eslintrc"
+			],
+			[
+				".esl",
+				".eslintrc"
+			],
+			[
+				"home",
+				"source/pages/containers/Home.jsx"
 			],
 			[
 				"clien",
@@ -1157,26 +1589,6 @@
 			[
 				"processjsx",
 				"static/js/react/process/jsx/process.list.js"
-			],
-			[
-				"js/process/interesado_detail.js",
-				"static/js/process/interesado_detail.js"
-			],
-			[
-				"reactoo",
-				"static/js/react/tools.js"
-			],
-			[
-				"js/candidate/company_candidate_tag.js",
-				"static/js/candidate/company_candidate_tag.js"
-			],
-			[
-				"detailshf",
-				"templates/candidate/details/detailshf.html"
-			],
-			[
-				"vacationurl",
-				"vacations/urls.py"
 			]
 		],
 		"width": 0.0

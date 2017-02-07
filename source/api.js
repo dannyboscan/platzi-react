@@ -35,7 +35,7 @@ const Api = {
 			const data = await res.json();
 			return data;
 		}
-	}
+	},
 };
 
 export default Api;

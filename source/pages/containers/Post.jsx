@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import Api from '../../api';
-import Loading from '../../shared/components/Loading.jsx';
-import PostBody from '../../posts/containers/Post.jsx';
-import Comment from '../../comments/components/Comment.jsx';
+import Loading from '../../shared/components/Loading';
+import PostBody from '../../posts/containers/Post';
+import Comment from '../../comments/components/Comment';
 
 import PageStyle from './page.css';
 

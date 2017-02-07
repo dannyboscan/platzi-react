@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import Api from '../../api';
-import Loading from '../../shared/components/Loading.jsx';
+import Loading from '../../shared/components/Loading';
 import Style from './post.css';
 
 class Post extends Component {
@@ -31,7 +31,7 @@ class Post extends Component {
         : Promise.resolve(this.props.comments),
     ]);
 
-    this.setState({ loading: false, user, comments });
+    return this.setState({ loading: false, user, comments });
   }
 
   render() {
@@ -71,6 +71,11 @@ Post.propTypes = {
   userId: PropTypes.number,
   title: PropTypes.string,
   body: PropTypes.string,
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }),
+  comments: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Post;

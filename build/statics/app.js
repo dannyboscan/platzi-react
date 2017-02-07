@@ -25485,7 +25485,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -25515,81 +25515,83 @@
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 	class Home extends _react.Component {
-		constructor() {
-			super();
+	  constructor() {
+	    super();
 
-			this.state = {
-				loading: true,
-				page: 1,
-				posts: []
-			};
+	    this.state = {
+	      loading: true,
+	      page: 1,
+	      posts: []
+	    };
 
-			this.handleScroll = this.handleScroll.bind(this);
-		}
+	    this.handleScroll = this.handleScroll.bind(this);
+	  }
 
-		componentDidMount() {
-			var _this = this;
+	  componentDidMount() {
+	    var _this = this;
 
-			return _asyncToGenerator(function* () {
-				const { page } = _this.state;
-				const posts = yield _api2.default.posts.getList(page);
-				_this.setState({
-					posts,
-					loading: false,
-					page: page + 1
-				});
+	    return _asyncToGenerator(function* () {
+	      const { page } = _this.state;
+	      const posts = yield _api2.default.posts.getList(page);
+	      _this.setState({
+	        posts,
+	        loading: false,
+	        page: page + 1
+	      });
 
-				window.addEventListener('scroll', _this.handleScroll);
-			})();
-		}
+	      window.addEventListener('scroll', _this.handleScroll);
+	    })();
+	  }
 
-		componentWillUnmount() {
-			window.removeEventListener('scroll', this.handleScroll);
-		}
+	  componentWillUnmount() {
+	    window.removeEventListener('scroll', this.handleScroll);
+	  }
 
-		handleScroll() {
-			var _this2 = this;
+	  handleScroll() {
+	    var _this2 = this;
 
-			if (this.state.loading) return null;
+	    if (this.state.loading) return null;
 
-			const wrap = document.getElementById('home');
-			const contentHeight = wrap.offsetHeight;
-			const yOffset = window.pageYOffset;
-			const y = yOffset + window.innerHeight;
+	    const wrap = document.getElementById('home');
+	    const contentHeight = wrap.offsetHeight;
+	    const yOffset = window.pageYOffset;
+	    const y = yOffset + window.innerHeight;
 
-			if (y < contentHeight) return null;
+	    if (y < contentHeight) {
+	      return null;
+	    }
 
-			this.setState({ loading: true }, _asyncToGenerator(function* () {
-				try {
-					const { posts, page } = _this2.state;
-					const newPosts = yield _api2.default.posts.getList(page);
+	    return this.setState({ loading: true }, _asyncToGenerator(function* () {
+	      try {
+	        const { posts, page } = _this2.state;
+	        const newPosts = yield _api2.default.posts.getList(page);
 
-					_this2.setState({
-						loading: false,
-						page: page + 1,
-						posts: posts.concat(newPosts)
-					});
-				} catch (e) {
-					console.error(e);
-					_this2.setState({ loading: false });
-				}
-			}));
-		}
+	        _this2.setState({
+	          loading: false,
+	          page: page + 1,
+	          posts: posts.concat(newPosts)
+	        });
+	      } catch (e) {
+	        console.error(e);
+	        _this2.setState({ loading: false });
+	      }
+	    }));
+	  }
 
-		render() {
-			const { posts } = this.state;
+	  render() {
+	    const { posts } = this.state;
 
-			return _react2.default.createElement(
-				'section',
-				{ id: 'home', name: 'Home', className: _page2.default.section },
-				_react2.default.createElement(
-					'section',
-					{ className: _page2.default.list },
-					posts.map(post => _react2.default.createElement(_Post2.default, _extends({ key: post.id }, post)))
-				),
-				this.state.loading && _react2.default.createElement(_Loading2.default, null)
-			);
-		}
+	    return _react2.default.createElement(
+	      'section',
+	      { id: 'home', name: 'Home', className: _page2.default.section },
+	      _react2.default.createElement(
+	        'section',
+	        { className: _page2.default.list },
+	        posts.map(post => _react2.default.createElement(_Post2.default, _extends({ key: post.id }, post)))
+	      ),
+	      this.state.loading && _react2.default.createElement(_Loading2.default, null)
+	    );
+	  }
 	}
 
 	exports.default = Home;
@@ -26192,7 +26194,7 @@
 	      const { userId, id } = _this.props;
 	      const [user, comments] = yield Promise.all([!_this.props.user ? _api2.default.users.getSingle(userId) : Promise.resolve(_this.props.user), !_this.props.comments ? _api2.default.posts.getComments(id) : Promise.resolve(_this.props.comments)]);
 
-	      _this.setState({ loading: false, user, comments });
+	      return _this.setState({ loading: false, user, comments });
 	    })();
 	  }
 
@@ -26246,7 +26248,12 @@
 	  id: _react.PropTypes.number,
 	  userId: _react.PropTypes.number,
 	  title: _react.PropTypes.string,
-	  body: _react.PropTypes.string
+	  body: _react.PropTypes.string,
+	  user: _react.PropTypes.shape({
+	    id: _react.PropTypes.number,
+	    name: _react.PropTypes.string
+	  }),
+	  comments: _react.PropTypes.arrayOf(_react.PropTypes.object)
 	};
 
 	exports.default = Post;
@@ -26271,7 +26278,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const Loading = props => {
+	function Loading() {
 	  return _react2.default.createElement(
 	    'div',
 	    { className: _loading2.default.loading },
@@ -26282,7 +26289,7 @@
 	    ),
 	    _react2.default.createElement('i', { className: 'fa fa-spinner fa-spin fa-3x' })
 	  );
-	};
+	}
 
 	exports.default = Loading;
 
@@ -26447,6 +26454,12 @@
 	  );
 	};
 
+	Comment.propTypes = {
+	  name: _react.PropTypes.string.isRequired,
+	  body: _react.PropTypes.string.isRequired,
+	  email: _react.PropTypes.string.isRequired
+	};
+
 	exports.default = Comment;
 
 /***/ },
@@ -26456,7 +26469,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -26486,86 +26499,94 @@
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 	class Profile extends _react.Component {
-		constructor() {
-			super();
-			this.state = {
-				user: {},
-				posts: [],
-				loading: true
-			};
-		}
+	  constructor() {
+	    super();
+	    this.state = {
+	      user: {},
+	      posts: [],
+	      loading: true
+	    };
+	  }
 
-		componentDidMount() {
-			var _this = this;
+	  componentDidMount() {
+	    var _this = this;
 
-			return _asyncToGenerator(function* () {
-				const [user, posts] = yield Promise.all([_api2.default.users.getSingle(_this.props.params.id), _api2.default.users.getPosts(_this.props.params.id)]);
+	    return _asyncToGenerator(function* () {
+	      const [user, posts] = yield Promise.all([_api2.default.users.getSingle(_this.props.params.id), _api2.default.users.getPosts(_this.props.params.id)]);
 
-				_this.setState({
-					loading: false,
-					user,
-					posts
-				});
-			})();
-		}
+	      _this.setState({
+	        loading: false,
+	        user,
+	        posts
+	      });
+	    })();
+	  }
 
-		render() {
-			const { user, posts } = this.state;
+	  render() {
+	    const { user, posts } = this.state;
 
-			if (this.state.loading) return _react2.default.createElement(_Loading2.default, null);
+	    if (this.state.loading) {
+	      return _react2.default.createElement(_Loading2.default, null);
+	    }
 
-			return _react2.default.createElement(
-				'section',
-				{ name: 'Profile', className: _page2.default.section },
-				_react2.default.createElement(
-					'h2',
-					null,
-					'Profile de ',
-					user.name
-				),
-				_react2.default.createElement(
-					'fieldset',
-					null,
-					_react2.default.createElement(
-						'legend',
-						null,
-						'Basic info'
-					),
-					_react2.default.createElement('input', { type: 'email', value: user.email, disabled: true })
-				),
-				user.address && _react2.default.createElement(
-					'fieldset',
-					null,
-					_react2.default.createElement(
-						'legend',
-						null,
-						'Address'
-					),
-					_react2.default.createElement(
-						'address',
-						null,
-						user.address.street,
-						' ',
-						_react2.default.createElement('br', null),
-						user.address.suite,
-						' ',
-						_react2.default.createElement('br', null),
-						user.address.city,
-						' ',
-						_react2.default.createElement('br', null),
-						user.address.zipcode,
-						' ',
-						_react2.default.createElement('br', null)
-					)
-				),
-				_react2.default.createElement(
-					'section',
-					{ className: _page2.default.list },
-					posts.map(p => _react2.default.createElement(_Post2.default, _extends({ key: p.id }, p, { user: user })))
-				)
-			);
-		}
+	    return _react2.default.createElement(
+	      'section',
+	      { name: 'Profile', className: _page2.default.section },
+	      _react2.default.createElement(
+	        'h2',
+	        null,
+	        'Profile de ',
+	        user.name
+	      ),
+	      _react2.default.createElement(
+	        'fieldset',
+	        null,
+	        _react2.default.createElement(
+	          'legend',
+	          null,
+	          'Basic info'
+	        ),
+	        _react2.default.createElement('input', { type: 'email', value: user.email, disabled: true })
+	      ),
+	      user.address && _react2.default.createElement(
+	        'fieldset',
+	        null,
+	        _react2.default.createElement(
+	          'legend',
+	          null,
+	          'Address'
+	        ),
+	        _react2.default.createElement(
+	          'address',
+	          null,
+	          user.address.street,
+	          ' ',
+	          _react2.default.createElement('br', null),
+	          user.address.suite,
+	          ' ',
+	          _react2.default.createElement('br', null),
+	          user.address.city,
+	          ' ',
+	          _react2.default.createElement('br', null),
+	          user.address.zipcode,
+	          ' ',
+	          _react2.default.createElement('br', null)
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'section',
+	        { className: _page2.default.list },
+	        posts.map(p => _react2.default.createElement(_Post2.default, _extends({ key: p.id }, p, { user: user })))
+	      )
+	    );
+	  }
 	}
+
+	Profile.propTypes = {
+	  params: _react.PropTypes.shape({
+	    id: _react.PropTypes.string.isRequired
+	  })
+	};
 
 	exports.default = Profile;
 
@@ -26576,7 +26597,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -26587,23 +26608,21 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	class Error404 extends _react.Component {
-		render() {
-			return _react2.default.createElement(
-				'section',
-				{ name: 'Error404' },
-				_react2.default.createElement(
-					'h1',
-					null,
-					'Error404'
-				),
-				_react2.default.createElement(
-					_reactRouter.Link,
-					{ to: '/' },
-					'Go back to Home'
-				)
-			);
-		}
+	function Error404() {
+	  return _react2.default.createElement(
+	    'section',
+	    { name: 'Error404' },
+	    _react2.default.createElement(
+	      'h1',
+	      null,
+	      'Error404'
+	    ),
+	    _react2.default.createElement(
+	      _reactRouter.Link,
+	      { to: '/' },
+	      'Go back to Home'
+	    )
+	  );
 	}
 
 	exports.default = Error404;
@@ -26630,7 +26649,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	const Header = props => {
+	const Header = () => {
 	  return _react2.default.createElement(
 	    'header',
 	    { className: _header2.default.header },
@@ -26655,7 +26674,7 @@
 	      ),
 	      _react2.default.createElement(
 	        'a',
-	        { href: 'https://www.hcmfront.com/', className: _header2.default.link, target: '_blank' },
+	        { href: 'https://www.hcmfront.com/', className: _header2.default.link, rel: 'noopener noreferrer', target: '_blank' },
 	        'HCMFront'
 	      )
 	    )
