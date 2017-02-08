@@ -11,16 +11,14 @@
       -ms-transform: scale(1.01);
           transform: scale(1.01);
 }
-
-.title {
+.post .title {
   margin: 0;
 }
-.title a {
+.post .title a {
   color: #222;
   text-decoration: none;
 }
-
-.meta {
+.post .meta {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -29,6 +27,10 @@
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+.post .meta a {
+  color: #187bde;
+  text-decoration: none;
 }
 
 @media (max-width: 1000px) {

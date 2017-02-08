@@ -1,0 +1,28 @@
+{
+  "es": {
+    "loading": "Cargando Información...",
+    "error.404": "Regresar al inicio",
+    "title": "React con Redux",
+    "title.home": "Inicio",
+    "title.profile": "Perfil de {name}",
+    "profile.field.basic": "Información Básica",
+    "profile.field.address": "Dirección",
+    "header.nav.home": "Inicio",
+    "comment.meta.author": "Por: <a href='mailto:{email}'>{name}</a>",
+    "post.meta.comments": "{amount} comentarios",
+    "post.meta.readMore": "Leer más..."
+  },
+  "en": {
+    "loading": "Loading data...",
+    "error.404": "Go back to home",
+    "title": "React with Redux",
+    "title.home": "Home",
+    "title.profile": "Profile of {name}",
+    "profile.field.basic": "Basic info",
+    "profile.field.address": "Address",
+    "header.nav.home": "Home",
+    "comment.meta.author": "By: <a href='mailto:{email}'>{name}</a>",
+    "post.meta.comments": "{amount} comments",
+    "post.meta.readMore": "Read more..."
+  }
+}

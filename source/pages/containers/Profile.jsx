@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Post from '../../posts/containers/Post';
 import Api from '../../api';
@@ -38,16 +39,18 @@ class Profile extends Component {
 
     return (
       <section name="Profile" className={PageStyle.section}>
-        <h2>Profile de {user.name}</h2>
+        <h2>
+          <FormattedMessage id="title.profile" values={{ name: user.name }} />
+        </h2>
 
         <fieldset>
-          <legend>Basic info</legend>
+          <FormattedMessage id="profile.field.basic" tagName="legend" />
           <input type="email" value={user.email} disabled />
         </fieldset>
 
         {user.address &&
           <fieldset>
-            <legend>Address</legend>
+            <FormattedMessage id="profile.field.address" tagName="legend" />
             <address>
               {user.address.street} <br />
               {user.address.suite} <br />

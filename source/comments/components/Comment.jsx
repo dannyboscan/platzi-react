@@ -1,11 +1,18 @@
 import React, { PropTypes } from 'react';
+import { FormattedHTMLMessage } from 'react-intl';
 
 const Comment = (props) => {
   const { name, body, email } = props;
   return (
     <article>
       <div>
-        By: <a href={`mailto:${email}`}>{name}</a>
+        <FormattedHTMLMessage
+          id="comment.meta.author"
+          values={{
+            email,
+            name,
+          }}
+        />
       </div>
 
       <p>
