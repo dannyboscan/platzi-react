@@ -13,6 +13,8 @@ import messages from './messages.json';
 import Pages from './pages/containers/Page';
 import Layout from './pages/components/Layout';
 
+const domain = process.env.NODE_ENV === 'production' ? 'https://dboscan-react-ss.now.sh' : 'http://localhost:3001';
+
 function requestHandler(req, res) {
   const locale = req.headers['accept-language'].indexOf('es') >= 0 ? 'es' : 'en';
   const ctx = createServerRenderContext();
@@ -53,6 +55,7 @@ function requestHandler(req, res) {
       <Layout
         title="React con Redux, Curso de Platzi"
         content={html}
+        domain={domain}
       />,
     ),
   );

@@ -5,7 +5,6 @@ import { addLocaleData, IntlProvider } from 'react-intl';
 
 import en from 'react-intl/locale-data/en';
 import es from 'react-intl/locale-data/es';
-
 import messages from './messages.json';
 
 import Pages from './pages/containers/Page';

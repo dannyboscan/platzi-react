@@ -9,9 +9,9 @@ function Layout(props) {
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="http://localhost:3001/style.css" />
+        <link rel="stylesheet" href={`${props.domain}/style.css`} />
 
-        <link rel="icon" href="http://localhost:3001/react.png" sizes="192x192" />
+        <link rel="icon" href={`${props.domain}/react.png`} sizes="192x192" />
 
         <title>{props.title}</title>
       </head>
@@ -24,7 +24,7 @@ function Layout(props) {
         />
 
 
-        <script src="http://localhost:3001/app.js" />
+        <script src={`${props.domain}/app.js`} />
       </body>
     </html>
   );
@@ -33,6 +33,7 @@ function Layout(props) {
 Layout.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
+  domain: PropTypes.string,
 };
 
 export default Layout;
