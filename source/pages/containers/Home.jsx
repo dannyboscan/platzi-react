@@ -1,33 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 import Api from '../../api';
 import Post from '../../posts/containers/Post';
 import Loading from '../../shared/components/Loading';
+import actions from '../../actions';
 
 import PageStyle from './page.css';
 
 
 class Home extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       loading: true,
-      page: 1,
-      posts: [],
     };
 
     this.handleScroll = this.handleScroll.bind(this);
   }
 
   async componentDidMount() {
-    const { page } = this.state;
+    const { page, dispatch } = this.props;
     const posts = await Api.posts.getList(page);
-    this.setState({
-      posts,
-      loading: false,
-      page: page+1,
-    });
+
+    dispatch(actions.setPost(posts));
+
+    this.setState({ loading: false });
 
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -50,14 +49,12 @@ class Home extends Component {
 
     return this.setState({ loading: true }, async () => {
       try {
-        const { posts, page } = this.state;
+        const { page, dispatch } = this.props;
         const newPosts = await Api.posts.getList(page);
 
-        this.setState({
-          loading: false,
-          page: page + 1,
-          posts: posts.concat(newPosts),
-        });
+        dispatch(actions.setPost(newPosts));
+
+        this.setState({ loading: false });
       } catch (e) {
         console.error(e);
         this.setState({ loading: false });
@@ -66,7 +63,7 @@ class Home extends Component {
   }
 
   render() {
-    const { posts } = this.state;
+    const { posts } = this.props;
 
     return (
       <section id="home" name="Home" className={PageStyle.section}>
@@ -84,4 +81,21 @@ class Home extends Component {
   }
 }
 
-export default Home;
+Home.propTypes = {
+  dispatch: PropTypes.func,
+  posts: PropTypes.arrayOf(PropTypes.object),
+  page: PropTypes.number,
+};
+
+function mapStateToProps(state) {
+  return {
+    posts: state.posts.entities,
+    page: state.posts.page,
+  };
+}
+
+// function mapDispatchToProps(dispatch) {
+//   return {};
+// }
+
+export default connect(mapStateToProps)(Home);

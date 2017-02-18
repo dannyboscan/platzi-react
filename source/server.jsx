@@ -2,6 +2,7 @@ import http from 'http';
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { ServerRouter, createServerRenderContext } from 'react-router';
+import { Provider } from 'react-redux';
 
 import { IntlProvider } from 'react-intl';
 
@@ -9,6 +10,7 @@ import messages from './messages.json';
 
 import Pages from './pages/containers/Page';
 import Layout from './pages/components/Layout';
+import store from './store';
 
 const domain = process.env.NODE_ENV === 'production' ? 'https://dboscan-react-ss.now.sh' : 'http://localhost:3001';
 
@@ -17,11 +19,13 @@ function requestHandler(req, res) {
   const ctx = createServerRenderContext();
 
   let html = renderToString(
-    <IntlProvider locale={locale} messages={messages[locale]}>
-      <ServerRouter location={req.url} context={ctx}>
-        <Pages />
-      </ServerRouter>
-    </IntlProvider>,
+    <Provider store={store}>
+      <IntlProvider locale={locale} messages={messages[locale]}>
+        <ServerRouter location={req.url} context={ctx}>
+          <Pages />
+        </ServerRouter>
+      </IntlProvider>
+    </Provider>,
   );
 
   const result = ctx.getResult();
@@ -39,11 +43,13 @@ function requestHandler(req, res) {
     res.writeHead(404);
 
     html = renderToString(
-      <IntlProvider locale={locale} messages={messages[locale]}>
-        <ServerRouter location={req.url} context={ctx}>
-          <Pages />
-        </ServerRouter>
-      </IntlProvider>,
+      <Provider store={store}>
+        <IntlProvider locale={locale} messages={messages[locale]}>
+          <ServerRouter location={req.url} context={ctx}>
+            <Pages />
+          </ServerRouter>
+        </IntlProvider>
+      </Provider>,
     );
   }
 
