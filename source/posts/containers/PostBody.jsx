@@ -18,7 +18,7 @@ class PostBody extends Component {
   }
 
   async componentDidMount() {
-    if (!!this.props.user && !!this.props.comments) {
+    if (this.props.user && this.props.comments.size > 0) {
       return this.setState({ loading: false });
     }
 
@@ -53,7 +53,7 @@ class PostBody extends Component {
             {user.name}
           </Link>
           <span className={Style.comments}>
-            &nbsp;<FormattedMessage id="post.meta.comments" values={{ amount: comments.length }} />
+            &nbsp;<FormattedMessage id="post.meta.comments" values={{ amount: comments.size }} />
           </span>
           <Link to={`/post/${id}`}>
             <FormattedMessage id="post.meta.readMore" />
@@ -66,21 +66,23 @@ class PostBody extends Component {
 
 PostBody.propTypes = {
   id: PropTypes.number,
-  userId: PropTypes.number,
   title: PropTypes.string,
   body: PropTypes.string,
+  userId: PropTypes.number,
   user: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
+    size: PropTypes.number,
+    get: PropTypes.func,
   }),
-  comments: PropTypes.arrayOf(PropTypes.object),
+  comments: PropTypes.object,
   actions: PropTypes.objectOf(PropTypes.func),
 };
 
 function mapStateToProps(state, props) {
   return {
-    comments: state.comments.filter(c => c.postId === props.id),
-    user: state.users[props.userId],
+    comments: state.get('comments').filter(c => c.get('postId') === props.id),
+    user: state.get('users').get(props.userId),
   };
 }
 

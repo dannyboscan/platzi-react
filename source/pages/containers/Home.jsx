@@ -61,7 +61,8 @@ class Home extends Component {
       <section id="home" name="Home" className={PageStyle.section}>
         <section className={PageStyle.list}>
           {
-            posts.map(post => <PostBody key={post.id} {...post} />)
+            posts.map(post => <PostBody key={post.get('id')} {...post.toJS()} />)
+              .toArray()
           }
         </section>
 
@@ -74,14 +75,14 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.object),
+  posts: PropTypes.object,
   actions: PropTypes.objectOf(PropTypes.func),
 };
 
 function mapStateToProps(state) {
   return {
-    posts: state.posts.entities,
-    page: state.posts.page,
+    posts: state.get('posts').get('entities'),
+    // page: state.get('posts').get('page'),
   };
 }
 

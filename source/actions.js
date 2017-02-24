@@ -24,7 +24,7 @@ function setUser(user) {
 function postsNextPage() {
   return async (dispatch, getState) => {
     const state = getState();
-    const currentPage = state.posts.page;
+    const currentPage = state.get('posts').get('page');
 
     const posts = await Api.posts.getList(currentPage);
     dispatch(setPost(posts));
@@ -36,7 +36,7 @@ function postsNextPage() {
 function loadPost(postId) {
   return async (dispatch) => {
     const post = await Api.posts.getSingle(postId);
-    dispatch(setPost(post));
+    dispatch(setPost([post]));
 
     return post;
   };

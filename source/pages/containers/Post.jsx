@@ -38,13 +38,15 @@ class Post extends Component {
     return (
       <section name="Post" className={PageStyle.section}>
         <PostBody
-          {...post}
+          {...post.toJS()}
           user={user}
           comments={comments}
         />
 
         <section className={PageStyle.list}>
-          {comments.map(c => <Comment key={c.id} {...c} />)}
+          {
+            comments.map(c => <Comment key={c.get('id')} {...c.toJS()} />).toArray()
+          }
         </section>
       </section>
     );
@@ -54,21 +56,21 @@ class Post extends Component {
 Post.propTypes = {
   post: PropTypes.object,
   user: PropTypes.object,
-  comments: PropTypes.arrayOf(PropTypes.object),
+  comments: PropTypes.object,
   actions: PropTypes.objectOf(PropTypes.func),
   params: PropTypes.object,
 };
 
 function mapStateToProps(state, props) {
   const postId = +props.params.id;
-  const post = state.posts.entities.length
-    ? state.posts.entities.find(p => p && p.id === postId)
+  const post = state.get('posts').get('entities').size
+    ? state.get('posts').get('entities').get(postId)
     : null;
 
   return {
     post,
-    user: post ? state.users[post.userId] : null,
-    comments: state.comments.filter(c => c.postId === postId),
+    user: post ? state.get('users').get(post.get('userId')) : null,
+    comments: state.get('comments').filter(c => c.get('postId') === postId),
   };
 }
 

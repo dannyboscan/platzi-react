@@ -58,7 +58,7 @@
 
 	var _reactRouter = __webpack_require__(26);
 
-	var _reactRedux = __webpack_require__(32);
+	var _reactRedux = __webpack_require__(31);
 
 	var _reactIntl = __webpack_require__(17);
 
@@ -998,7 +998,7 @@
 	var PooledClass = __webpack_require__(14);
 	var ReactFeatureFlags = __webpack_require__(144);
 	var ReactReconciler = __webpack_require__(23);
-	var Transaction = __webpack_require__(30);
+	var Transaction = __webpack_require__(29);
 
 	var invariant = __webpack_require__(1);
 
@@ -3163,12 +3163,6 @@
 
 /***/ },
 /* 27 */
-/***/ function(module, exports) {
-
-	module.exports = require("redux");
-
-/***/ },
-/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3205,7 +3199,7 @@
 	exports.default = Loading;
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -3281,7 +3275,7 @@
 	module.exports = SyntheticMouseEvent;
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -3510,7 +3504,7 @@
 	module.exports = TransactionImpl;
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports) {
 
 	/**
@@ -3637,10 +3631,16 @@
 	module.exports = escapeTextContentForBrowser;
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-redux");
+
+/***/ },
+/* 32 */
+/***/ function(module, exports) {
+
+	module.exports = require("redux");
 
 /***/ },
 /* 33 */
@@ -3685,7 +3685,7 @@
 	  return (() => {
 	    var _ref = _asyncToGenerator(function* (dispatch, getState) {
 	      const state = getState();
-	      const currentPage = state.posts.page;
+	      const currentPage = state.get('posts').get('page');
 
 	      const posts = yield _api2.default.posts.getList(currentPage);
 	      dispatch(setPost(posts));
@@ -3703,7 +3703,7 @@
 	  return (() => {
 	    var _ref2 = _asyncToGenerator(function* (dispatch) {
 	      const post = yield _api2.default.posts.getSingle(postId);
-	      dispatch(setPost(post));
+	      dispatch(setPost([post]));
 
 	      return post;
 	    });
@@ -3772,11 +3772,11 @@
 
 	var _reactIntl = __webpack_require__(17);
 
-	var _redux = __webpack_require__(27);
+	var _redux = __webpack_require__(32);
 
-	var _reactRedux = __webpack_require__(32);
+	var _reactRedux = __webpack_require__(31);
 
-	var _Loading = __webpack_require__(28);
+	var _Loading = __webpack_require__(27);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -3805,7 +3805,7 @@
 	    var _this = this;
 
 	    return _asyncToGenerator(function* () {
-	      if (!!_this.props.user && !!_this.props.comments) {
+	      if (_this.props.user && _this.props.comments.size > 0) {
 	        return _this.setState({ loading: false });
 	      }
 
@@ -3853,7 +3853,7 @@
 	          'span',
 	          { className: _postbody2.default.comments },
 	          '\xA0',
-	          _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'post.meta.comments', values: { amount: comments.length } })
+	          _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'post.meta.comments', values: { amount: comments.size } })
 	        ),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
@@ -3867,21 +3867,23 @@
 
 	PostBody.propTypes = {
 	  id: _react.PropTypes.number,
-	  userId: _react.PropTypes.number,
 	  title: _react.PropTypes.string,
 	  body: _react.PropTypes.string,
+	  userId: _react.PropTypes.number,
 	  user: _react.PropTypes.shape({
 	    id: _react.PropTypes.number,
-	    name: _react.PropTypes.string
+	    name: _react.PropTypes.string,
+	    size: _react.PropTypes.number,
+	    get: _react.PropTypes.func
 	  }),
-	  comments: _react.PropTypes.arrayOf(_react.PropTypes.object),
+	  comments: _react.PropTypes.object,
 	  actions: _react.PropTypes.objectOf(_react.PropTypes.func)
 	};
 
 	function mapStateToProps(state, props) {
 	  return {
-	    comments: state.comments.filter(c => c.postId === props.id),
-	    user: state.users[props.userId]
+	    comments: state.get('comments').filter(c => c.get('postId') === props.id),
+	    user: state.get('users').get(props.userId)
 	  };
 	}
 
@@ -6495,7 +6497,7 @@
 	  value: true
 	});
 
-	var _isomorphicFetch = __webpack_require__(195);
+	var _isomorphicFetch = __webpack_require__(196);
 
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
@@ -7472,7 +7474,7 @@
 	var _assign = __webpack_require__(4);
 
 	var ReactUpdates = __webpack_require__(11);
-	var Transaction = __webpack_require__(30);
+	var Transaction = __webpack_require__(29);
 
 	var emptyFunction = __webpack_require__(7);
 
@@ -7799,7 +7801,7 @@
 	var _assign = __webpack_require__(4);
 
 	var PooledClass = __webpack_require__(14);
-	var Transaction = __webpack_require__(30);
+	var Transaction = __webpack_require__(29);
 	var ReactInstrumentation = __webpack_require__(8);
 	var ReactServerUpdateQueue = __webpack_require__(157);
 
@@ -8473,7 +8475,7 @@
 	'use strict';
 
 	var ExecutionEnvironment = __webpack_require__(6);
-	var escapeTextContentForBrowser = __webpack_require__(31);
+	var escapeTextContentForBrowser = __webpack_require__(30);
 	var setInnerHTML = __webpack_require__(52);
 
 	/**
@@ -9181,15 +9183,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(32);
+	var _reactRedux = __webpack_require__(31);
 
-	var _redux = __webpack_require__(27);
+	var _redux = __webpack_require__(32);
 
 	var _PostBody = __webpack_require__(34);
 
 	var _PostBody2 = _interopRequireDefault(_PostBody);
 
-	var _Loading = __webpack_require__(28);
+	var _Loading = __webpack_require__(27);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -9265,7 +9267,7 @@
 	      _react2.default.createElement(
 	        'section',
 	        { className: _page2.default.list },
-	        posts.map(post => _react2.default.createElement(_PostBody2.default, _extends({ key: post.id }, post)))
+	        posts.map(post => _react2.default.createElement(_PostBody2.default, _extends({ key: post.get('id') }, post.toJS()))).toArray()
 	      ),
 	      this.state.loading && _react2.default.createElement(_Loading2.default, null)
 	    );
@@ -9273,14 +9275,13 @@
 	}
 
 	Home.propTypes = {
-	  posts: _react.PropTypes.arrayOf(_react.PropTypes.object),
+	  posts: _react.PropTypes.object,
 	  actions: _react.PropTypes.objectOf(_react.PropTypes.func)
 	};
 
 	function mapStateToProps(state) {
 	  return {
-	    posts: state.posts.entities,
-	    page: state.posts.page
+	    posts: state.get('posts').get('entities')
 	  };
 	}
 
@@ -9374,11 +9375,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _redux = __webpack_require__(27);
+	var _redux = __webpack_require__(32);
 
-	var _reactRedux = __webpack_require__(32);
+	var _reactRedux = __webpack_require__(31);
 
-	var _Loading = __webpack_require__(28);
+	var _Loading = __webpack_require__(27);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -9435,14 +9436,14 @@
 	    return _react2.default.createElement(
 	      'section',
 	      { name: 'Post', className: _page2.default.section },
-	      _react2.default.createElement(_PostBody2.default, _extends({}, post, {
+	      _react2.default.createElement(_PostBody2.default, _extends({}, post.toJS(), {
 	        user: user,
 	        comments: comments
 	      })),
 	      _react2.default.createElement(
 	        'section',
 	        { className: _page2.default.list },
-	        comments.map(c => _react2.default.createElement(_Comment2.default, _extends({ key: c.id }, c)))
+	        comments.map(c => _react2.default.createElement(_Comment2.default, _extends({ key: c.get('id') }, c.toJS()))).toArray()
 	      )
 	    );
 	  }
@@ -9451,19 +9452,19 @@
 	Post.propTypes = {
 	  post: _react.PropTypes.object,
 	  user: _react.PropTypes.object,
-	  comments: _react.PropTypes.arrayOf(_react.PropTypes.object),
+	  comments: _react.PropTypes.object,
 	  actions: _react.PropTypes.objectOf(_react.PropTypes.func),
 	  params: _react.PropTypes.object
 	};
 
 	function mapStateToProps(state, props) {
 	  const postId = +props.params.id;
-	  const post = state.posts.entities.length ? state.posts.entities.find(p => p && p.id === postId) : null;
+	  const post = state.get('posts').get('entities').size ? state.get('posts').get('entities').get(postId) : null;
 
 	  return {
 	    post,
-	    user: post ? state.users[post.userId] : null,
-	    comments: state.comments.filter(c => c.postId === postId)
+	    user: post ? state.get('users').get(post.get('userId')) : null,
+	    comments: state.get('comments').filter(c => c.get('postId') === postId)
 	  };
 	}
 
@@ -9501,7 +9502,7 @@
 
 	var _api2 = _interopRequireDefault(_api);
 
-	var _Loading = __webpack_require__(28);
+	var _Loading = __webpack_require__(27);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -9606,22 +9607,24 @@
 	  value: true
 	});
 
-	var _redux = __webpack_require__(27);
+	var _reduxImmutable = __webpack_require__(197);
 
-	const initialState = {
+	var _immutable = __webpack_require__(195);
+
+	const initialState = (0, _immutable.fromJS)({
 	  posts: {
 	    page: 1,
-	    entities: []
+	    entities: {}
 	  },
-	  comments: [],
+	  comments: {},
 	  users: {}
-	};
+	});
 
 	const SET_POST = 'SET_POST';
 	const SET_COMMENTS = 'SET_COMMENTS';
 	const SET_USER = 'SET_USER';
 
-	function postPageReducer(state = initialState.posts.page, action = {}) {
+	function postPageReducer(state = initialState.get('posts').get('page'), action = {}) {
 	  if (action.type === SET_POST) {
 	    return state + 1;
 	  }
@@ -9629,55 +9632,45 @@
 	  return state;
 	}
 
-	function postEntitiesReducer(state = initialState.posts.entities, action = {}) {
+	function postEntitiesReducer(state = initialState.get('posts').get('entities'), action = {}) {
 	  if (action.type === SET_POST) {
-	    return state.concat(action.payload);
+	    return action.payload.reduce((posts, post) => posts.set(post.id, (0, _immutable.Map)(post)), state);
+	    // return state.concat(action.payload);
 	  }
 
 	  return state;
 	}
 
-	const postReducer = (0, _redux.combineReducers)({
+	const postReducer = (0, _reduxImmutable.combineReducers)({
 	  page: postPageReducer,
 	  entities: postEntitiesReducer
 	});
 
-	function commentsReducer(state = initialState.comments, action = {}) {
+	function commentsReducer(state = initialState.get('comments'), action = {}) {
 	  if (action.type === SET_COMMENTS) {
-	    return state.concat(action.payload);
+	    return action.payload.reduce((comments, comment) => comments.set(comment.id, (0, _immutable.Map)(comment)), state);
+	    // return state.concat(action.payload);
 	  }
 
 	  return state;
 	}
 
-	function usersReducer(state = initialState.users, action = {}) {
+	function usersReducer(state = initialState.get('users'), action = {}) {
 	  if (action.type === SET_USER) {
-	    return Object.assign({}, state, {
-	      [action.payload.id]: action.payload
-	    });
+	    return state.set(action.payload.id, action.payload);
+	    // return Object.assign({}, state, {
+	    //   [action.payload.id]: action.payload,
+	    // });
 	  }
 
 	  return state;
 	}
 
-	const reducer = (0, _redux.combineReducers)({
+	const reducer = (0, _reduxImmutable.combineReducers)({
 	  posts: postReducer,
 	  comments: commentsReducer,
 	  users: usersReducer
 	});
-
-	// function reducer(state = initialState, action = {}) {
-	//   if (action.type === SET_POST) {
-	//     return Object.assign({}, state, {
-	//       posts: Object.assign({}, state.posts, {
-	//         entities: state.posts.entities.concat(action.payload),
-	//         page: state.posts.page + 1,
-	//       }),
-	//     });
-	//   }
-
-	//   return state;
-	// }
 
 	exports.default = reducer;
 
@@ -9746,9 +9739,9 @@
 	  value: true
 	});
 
-	var _redux = __webpack_require__(27);
+	var _redux = __webpack_require__(32);
 
-	var _reduxThunk = __webpack_require__(196);
+	var _reduxThunk = __webpack_require__(198);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -9760,13 +9753,11 @@
 
 	const middlewares = [_reduxThunk2.default];
 
-	// if (process.env.NODE_ENV === 'development') {
-	//   const createLogger = require('redux-logger');
-	//   const logger = createLogger({ duration: true });
-	//   middlewares.push(logger);
-	// }
-
-	// const logger = createLogger();
+	if (true) {
+	  const createLogger = __webpack_require__(205);
+	  const logger = createLogger({ duration: true });
+	  middlewares.push(logger);
+	}
 
 	const store = (0, _redux.createStore)(_reducer2.default, (0, _redux.applyMiddleware)(...middlewares));
 
@@ -11679,7 +11670,7 @@
 
 	var EventPropagators = __webpack_require__(22);
 	var ReactDOMComponentTree = __webpack_require__(5);
-	var SyntheticMouseEvent = __webpack_require__(29);
+	var SyntheticMouseEvent = __webpack_require__(28);
 
 	var eventTypes = {
 	  mouseEnter: {
@@ -13219,7 +13210,7 @@
 	var ReactServerRenderingTransaction = __webpack_require__(73);
 
 	var emptyFunction = __webpack_require__(7);
-	var escapeTextContentForBrowser = __webpack_require__(31);
+	var escapeTextContentForBrowser = __webpack_require__(30);
 	var invariant = __webpack_require__(1);
 	var isEventSupported = __webpack_require__(51);
 	var shallowEqual = __webpack_require__(36);
@@ -15000,7 +14991,7 @@
 	var DOMLazyTree = __webpack_require__(19);
 	var ReactDOMComponentTree = __webpack_require__(5);
 
-	var escapeTextContentForBrowser = __webpack_require__(31);
+	var escapeTextContentForBrowser = __webpack_require__(30);
 	var invariant = __webpack_require__(1);
 	var validateDOMNesting = __webpack_require__(53);
 
@@ -16969,7 +16960,7 @@
 	var ReactBrowserEventEmitter = __webpack_require__(43);
 	var ReactInputSelection = __webpack_require__(71);
 	var ReactInstrumentation = __webpack_require__(8);
-	var Transaction = __webpack_require__(30);
+	var Transaction = __webpack_require__(29);
 	var ReactUpdateQueue = __webpack_require__(74);
 
 	/**
@@ -18030,7 +18021,7 @@
 	var SyntheticEvent = __webpack_require__(12);
 	var SyntheticFocusEvent = __webpack_require__(166);
 	var SyntheticKeyboardEvent = __webpack_require__(168);
-	var SyntheticMouseEvent = __webpack_require__(29);
+	var SyntheticMouseEvent = __webpack_require__(28);
 	var SyntheticDragEvent = __webpack_require__(165);
 	var SyntheticTouchEvent = __webpack_require__(169);
 	var SyntheticTransitionEvent = __webpack_require__(170);
@@ -18376,7 +18367,7 @@
 
 	'use strict';
 
-	var SyntheticMouseEvent = __webpack_require__(29);
+	var SyntheticMouseEvent = __webpack_require__(28);
 
 	/**
 	 * @interface DragEvent
@@ -18677,7 +18668,7 @@
 
 	'use strict';
 
-	var SyntheticMouseEvent = __webpack_require__(29);
+	var SyntheticMouseEvent = __webpack_require__(28);
 
 	/**
 	 * @interface WheelEvent
@@ -19396,7 +19387,7 @@
 
 	'use strict';
 
-	var escapeTextContentForBrowser = __webpack_require__(31);
+	var escapeTextContentForBrowser = __webpack_require__(30);
 
 	/**
 	 * Escapes attribute value to prevent scripting attacks.
@@ -21513,13 +21504,37 @@
 /* 195 */
 /***/ function(module, exports) {
 
-	module.exports = require("isomorphic-fetch");
+	module.exports = require("immutable");
 
 /***/ },
 /* 196 */
 /***/ function(module, exports) {
 
+	module.exports = require("isomorphic-fetch");
+
+/***/ },
+/* 197 */
+/***/ function(module, exports) {
+
+	module.exports = require("redux-immutable");
+
+/***/ },
+/* 198 */
+/***/ function(module, exports) {
+
 	module.exports = require("redux-thunk");
+
+/***/ },
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */
+/***/ function(module, exports) {
+
+	module.exports = require("redux-logger");
 
 /***/ }
 /******/ ]);
