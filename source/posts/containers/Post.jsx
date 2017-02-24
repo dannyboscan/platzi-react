@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import Api from '../../api';
 import Loading from '../../shared/components/Loading';
 import Style from './post.css';
+import actions from '../../actions';
 
 class Post extends Component {
   constructor(props) {
@@ -12,37 +14,30 @@ class Post extends Component {
 
     this.state = {
       loading: true,
-      user: props.user || null,
-      comments: props.comments || null,
     };
   }
 
   async componentDidMount() {
-    if (!!this.state.user && !!this.state.comments) {
+    if (!!this.props.user && !!this.props.comments) {
       return this.setState({ loading: false });
     }
 
     const { userId, id } = this.props;
-    const [user, comments] = await Promise.all([
-      !this.props.user
-        ? Api.users.getSingle(userId)
-        : Promise.resolve(this.props.user),
-      !this.props.comments
-        ? Api.posts.getComments(id)
-        : Promise.resolve(this.props.comments),
+
+    await Promise.all([
+      this.props.actions.loadUser(userId),
+      this.props.actions.loadCommentsForPost(id),
     ]);
 
-    return this.setState({ loading: false, user, comments });
+    return this.setState({ loading: false });
   }
 
   render() {
-    const { user, comments } = this.state;
-
     if (this.state.loading) {
       return (<Loading />);
     }
 
-    const { id, title, body } = this.props;
+    const { user, comments, id, title, body } = this.props;
 
     return (
       <article id={`post-${id}`} className={Style.post}>
@@ -79,6 +74,20 @@ Post.propTypes = {
     name: PropTypes.string,
   }),
   comments: PropTypes.arrayOf(PropTypes.object),
+  actions: PropTypes.objectOf(PropTypes.func),
 };
 
-export default Post;
+function mapStateToProps(state, props) {
+  return {
+    comments: state.comments.filter(c => c.postId === props.id),
+    user: state.users[props.userId],
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

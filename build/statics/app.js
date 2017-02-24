@@ -6900,9 +6900,9 @@
 
 	var _reactIntl = __webpack_require__(23);
 
-	var _api = __webpack_require__(32);
+	var _redux = __webpack_require__(114);
 
-	var _api2 = _interopRequireDefault(_api);
+	var _reactRedux = __webpack_require__(102);
 
 	var _Loading = __webpack_require__(33);
 
@@ -6911,6 +6911,10 @@
 	var _post = __webpack_require__(127);
 
 	var _post2 = _interopRequireDefault(_post);
+
+	var _actions = __webpack_require__(116);
+
+	var _actions2 = _interopRequireDefault(_actions);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6921,9 +6925,7 @@
 	    super(props);
 
 	    this.state = {
-	      loading: true,
-	      user: props.user || null,
-	      comments: props.comments || null
+	      loading: true
 	    };
 	  }
 
@@ -6931,25 +6933,24 @@
 	    var _this = this;
 
 	    return _asyncToGenerator(function* () {
-	      if (!!_this.state.user && !!_this.state.comments) {
+	      if (!!_this.props.user && !!_this.props.comments) {
 	        return _this.setState({ loading: false });
 	      }
 
 	      const { userId, id } = _this.props;
-	      const [user, comments] = yield Promise.all([!_this.props.user ? _api2.default.users.getSingle(userId) : Promise.resolve(_this.props.user), !_this.props.comments ? _api2.default.posts.getComments(id) : Promise.resolve(_this.props.comments)]);
 
-	      return _this.setState({ loading: false, user, comments });
+	      yield Promise.all([_this.props.actions.loadUser(userId), _this.props.actions.loadCommentsForPost(id)]);
+
+	      return _this.setState({ loading: false });
 	    })();
 	  }
 
 	  render() {
-	    const { user, comments } = this.state;
-
 	    if (this.state.loading) {
 	      return _react2.default.createElement(_Loading2.default, null);
 	    }
 
-	    const { id, title, body } = this.props;
+	    const { user, comments, id, title, body } = this.props;
 
 	    return _react2.default.createElement(
 	      'article',
@@ -7001,10 +7002,24 @@
 	    id: _react.PropTypes.number,
 	    name: _react.PropTypes.string
 	  }),
-	  comments: _react.PropTypes.arrayOf(_react.PropTypes.object)
+	  comments: _react.PropTypes.arrayOf(_react.PropTypes.object),
+	  actions: _react.PropTypes.objectOf(_react.PropTypes.func)
 	};
 
-	exports.default = Post;
+	function mapStateToProps(state, props) {
+	  return {
+	    comments: state.comments.filter(c => c.postId === props.id),
+	    user: state.users[props.userId]
+	  };
+	}
+
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    actions: (0, _redux.bindActionCreators)(_actions2.default, dispatch)
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Post);
 
 /***/ },
 /* 44 */
@@ -13977,13 +13992,15 @@
 
 /***/ },
 /* 123 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _redux = __webpack_require__(114);
 
 	const initialState = {
 	  posts: {
@@ -13994,18 +14011,67 @@
 	  users: {}
 	};
 
-	function reducer(state = initialState, action = {}) {
-	  if (action.type === 'SET_POST') {
+	const SET_POST = 'SET_POST';
+	const SET_COMMENTS = 'SET_COMMENTS';
+	const SET_USER = 'SET_USER';
+
+	function postPageReducer(state = initialState.posts.page, action = {}) {
+	  if (action.type === SET_POST) {
+	    return state + 1;
+	  }
+
+	  return state;
+	}
+
+	function postEntitiesReducer(state = initialState.posts.entities, action = {}) {
+	  if (action.type === SET_POST) {
+	    return state.concat(action.payload);
+	  }
+
+	  return state;
+	}
+
+	const postReducer = (0, _redux.combineReducers)({
+	  page: postPageReducer,
+	  entities: postEntitiesReducer
+	});
+
+	function commentsReducer(state = initialState.comments, action = {}) {
+	  if (action.type === SET_COMMENTS) {
+	    return state.concat(action.payload);
+	  }
+
+	  return state;
+	}
+
+	function usersReducer(state = initialState.users, action = {}) {
+	  if (action.type === SET_USER) {
 	    return Object.assign({}, state, {
-	      posts: Object.assign({}, state.posts, {
-	        entities: state.posts.entities.concat(action.payload),
-	        page: state.posts.page + 1
-	      })
+	      [action.payload.id]: action.payload
 	    });
 	  }
 
 	  return state;
 	}
+
+	const reducer = (0, _redux.combineReducers)({
+	  posts: postReducer,
+	  comments: commentsReducer,
+	  users: usersReducer
+	});
+
+	// function reducer(state = initialState, action = {}) {
+	//   if (action.type === SET_POST) {
+	//     return Object.assign({}, state, {
+	//       posts: Object.assign({}, state.posts, {
+	//         entities: state.posts.entities.concat(action.payload),
+	//         page: state.posts.page + 1,
+	//       }),
+	//     });
+	//   }
+
+	//   return state;
+	// }
 
 	exports.default = reducer;
 

@@ -63,8 +63,12 @@
   margin: 1em;
 }
 .pe7_feFmz-1Mxsh_bYoS7 {
-  background: -webkit-linear-gradient(0deg, #1c3643 0, #273b46 25%, #1e5372);
-  background: linear-gradient(90deg, #1c3643 0, #273b46 25%, #1e5372);
+  /*background: -webkit-linear-gradient(0deg, #1c3643 0, #273b46 25%, #1e5372);
+  background: linear-gradient(90deg, #1c3643 0, #273b46 25%, #1e5372);*/
+
+  background: #360033; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #360033 , #0b8793); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #360033 , #0b8793); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 ._2OmtD-0bKgTUV--hdr_046 {
