@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import Api from '../../api';
 import Loading from '../../shared/components/Loading';
-import PostBody from '../../posts/containers/Post';
+import PostBody from '../../posts/containers/PostBody';
 import Comment from '../../comments/components/Comment';
+import actions from '../../actions';
 
 import PageStyle from './page.css';
 
@@ -13,32 +15,21 @@ class Post extends Component {
 
     this.state = {
       loading: true,
-      post: {},
-      user: {},
-      comments: [],
     };
   }
 
   async componentDidMount() {
-    const { params } = this.props;
+    if (this.props.post) {
+      return this.setState({ loading: false });
+    }
 
-    const [post, comments] = await Promise.all([
-      Api.posts.getSingle(params.id),
-      Api.posts.getComments(params.id),
-    ]);
+    await this.props.actions.loadPost(this.props.params.id);
 
-    const user = await Api.users.getSingle(post.userId);
-
-    this.setState({
-      loading: false,
-      post,
-      user,
-      comments,
-    });
+    return this.setState({ loading: false });
   }
 
   render() {
-    const { post, user, comments } = this.state;
+    const { post, user, comments } = this.props;
 
     if (this.state.loading) {
       return (<Loading />);
@@ -60,4 +51,31 @@ class Post extends Component {
   }
 }
 
-export default Post;
+Post.propTypes = {
+  post: PropTypes.object,
+  user: PropTypes.object,
+  comments: PropTypes.arrayOf(PropTypes.object),
+  actions: PropTypes.objectOf(PropTypes.func),
+  params: PropTypes.object,
+};
+
+function mapStateToProps(state, props) {
+  const postId = +props.params.id;
+  const post = state.posts.entities.length
+    ? state.posts.entities.find(p => p && p.id === postId)
+    : null;
+
+  return {
+    post,
+    user: post ? state.users[post.userId] : null,
+    comments: state.comments.filter(c => c.postId === postId),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

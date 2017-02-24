@@ -5,10 +5,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Loading from '../../shared/components/Loading';
-import Style from './post.css';
+import Style from './postbody.css';
 import actions from '../../actions';
 
-class Post extends Component {
+class PostBody extends Component {
   constructor(props) {
     super(props);
 
@@ -64,7 +64,7 @@ class Post extends Component {
   }
 }
 
-Post.propTypes = {
+PostBody.propTypes = {
   id: PropTypes.number,
   userId: PropTypes.number,
   title: PropTypes.string,
@@ -90,4 +90,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+export default connect(mapStateToProps, mapDispatchToProps)(PostBody);

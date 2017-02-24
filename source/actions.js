@@ -33,6 +33,15 @@ function postsNextPage() {
   };
 }
 
+function loadPost(postId) {
+  return async (dispatch) => {
+    const post = await Api.posts.getSingle(postId);
+    dispatch(setPost(post));
+
+    return post;
+  };
+}
+
 function loadUser(userId) {
   return async (dispatch) => {
     const user = await Api.users.getSingle(userId);
@@ -56,6 +65,7 @@ export default {
   setComments,
   setUser,
   postsNextPage,
+  loadPost,
   loadUser,
   loadCommentsForPost,
 };

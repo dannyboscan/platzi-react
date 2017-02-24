@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Post from '../../posts/containers/Post';
+import PostBody from '../../posts/containers/PostBody';
 import Loading from '../../shared/components/Loading';
 import actions from '../../actions';
 
@@ -61,7 +61,7 @@ class Home extends Component {
       <section id="home" name="Home" className={PageStyle.section}>
         <section className={PageStyle.list}>
           {
-            posts.map(post => <Post key={post.id} {...post} />)
+            posts.map(post => <PostBody key={post.id} {...post} />)
           }
         </section>
 
@@ -75,7 +75,6 @@ class Home extends Component {
 
 Home.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object),
-  page: PropTypes.number,
   actions: PropTypes.objectOf(PropTypes.func),
 };
 

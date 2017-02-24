@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Post from '../../posts/containers/Post';
+import PostBody from '../../posts/containers/PostBody';
 import Api from '../../api';
 import Loading from '../../shared/components/Loading';
 
@@ -61,7 +61,7 @@ class Profile extends Component {
         }
 
         <section className={PageStyle.list}>
-          {posts.map(p => <Post key={p.id} {...p} user={user} />)}
+          {posts.map(p => <PostBody key={p.id} {...p} user={user} />)}
         </section>
       </section>
     );
