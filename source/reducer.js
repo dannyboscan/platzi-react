@@ -26,7 +26,6 @@ function postEntitiesReducer(state = initialState.get('posts').get('entities'), 
   if (action.type === SET_POST) {
     return action.payload
       .reduce((posts, post) => posts.set(post.id, map(post)), state);
-    // return state.concat(action.payload);
   }
 
   return state;
@@ -41,7 +40,6 @@ function commentsReducer(state = initialState.get('comments'), action = {}) {
   if (action.type === SET_COMMENTS) {
     return action.payload
       .reduce((comments, comment) => comments.set(comment.id, map(comment)), state);
-    // return state.concat(action.payload);
   }
 
   return state;
@@ -49,10 +47,7 @@ function commentsReducer(state = initialState.get('comments'), action = {}) {
 
 function usersReducer(state = initialState.get('users'), action = {}) {
   if (action.type === SET_USER) {
-    return state.set(action.payload.id, action.payload);
-    // return Object.assign({}, state, {
-    //   [action.payload.id]: action.payload,
-    // });
+    return state.set(action.payload.id, fromJS(action.payload));
   }
 
   return state;

@@ -25,7 +25,6 @@ function postsNextPage() {
   return async (dispatch, getState) => {
     const state = getState();
     const currentPage = state.get('posts').get('page');
-
     const posts = await Api.posts.getList(currentPage);
     dispatch(setPost(posts));
 
@@ -51,6 +50,15 @@ function loadUser(userId) {
   };
 }
 
+function loadUserPosts(userId) {
+  return async (dispatch) => {
+    const posts = await Api.users.getPosts(userId);
+    dispatch(setPost(posts));
+
+    return posts;
+  };
+}
+
 function loadCommentsForPost(postId) {
   return async (dispatch) => {
     const comments = await Api.posts.getComments(postId);
@@ -67,5 +75,6 @@ export default {
   postsNextPage,
   loadPost,
   loadUser,
+  loadUserPosts,
   loadCommentsForPost,
 };

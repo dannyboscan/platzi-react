@@ -49,8 +49,8 @@ class PostBody extends Component {
         </p>
 
         <div className={Style.meta}>
-          <Link to={`/user/${user.id}`} className={Style.user}>
-            {user.name}
+          <Link to={`/user/${user.get('id')}`} className={Style.user}>
+            {user.get('name')}
           </Link>
           <span className={Style.comments}>
             &nbsp;<FormattedMessage id="post.meta.comments" values={{ amount: comments.size }} />
