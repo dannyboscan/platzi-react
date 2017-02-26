@@ -19,6 +19,7 @@ class Post extends Component {
   }
 
   async componentDidMount() {
+    document.title = 'Post y Comentarios';
     if (this.props.post) {
       return this.setState({ loading: false });
     }

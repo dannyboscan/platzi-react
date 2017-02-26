@@ -21,6 +21,7 @@ class Home extends Component {
   }
 
   async componentDidMount() {
+    document.title = 'React con Redux, Curso de Platzi';
     await this.props.actions.postsNextPage();
     this.setState({ loading: false });
 

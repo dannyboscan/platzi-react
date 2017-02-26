@@ -19,6 +19,7 @@ class Profile extends Component {
 
   componentDidMount() {
     this.firstLoad();
+    document.title = `Perfil de usuario, ${this.props.user.get('name')}`;
   }
 
   async firstLoad() {
